@@ -4,3 +4,4 @@ services:
    image: dreammo/ssserver:1.0
    ports:
     - "8888:8888"
+   restart: always
