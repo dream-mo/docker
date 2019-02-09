@@ -1,0 +1,6 @@
+version: "2.2"
+services:
+  my-ssserver:
+   image: dreammo/ssserver:1.0
+   ports:
+    - "8888:8888"
