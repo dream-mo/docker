@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataConfig>
+    <dataSource type="JdbcDataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://ip:port/test?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;failOverReadOnly=false" user="root" password="root" />
+    <document>
+        <entity name="table_articles" query="select `id`, `title`,`content` from `articles`" deltaQuery="select `id`, `title`, `content` from `articles`">
+            <field column="id" name="article_id" />
+            <field column="title" name="article_title" />
+            <field column="content" name="article_content" />
+        </entity>
+    </document>
+</dataConfig>

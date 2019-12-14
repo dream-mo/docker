@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# 新创core_name名称
+core_name=$1
+
+#判断core_name是否为空
+if [ "$core_name" =  "" ];
+then
+  echo "ERROR: create solr core, must input core name!"
+  exit
+fi
+
+#创建core
+solr create_core -c $core_name
+solr config -c $core_name -p 8983 -action set-user-property -property update.autoCreateFields -value false
+
+#拷贝模板配置文件以及jar包
+cp /opt/solr-${SOLR_VERSION}/ik-mysql-template/data-config.xml $SOLR_DATA_DIR/${core_name}/
+cp /opt/solr-${SOLR_VERSION}/ik-mysql-template/managed-schema  $SOLR_DATA_DIR/${core_name}/conf/
+cp /opt/solr-${SOLR_VERSION}/ik-mysql-template/solrconfig.xml  $SOLR_DATA_DIR/${core_name}/conf/
+
+#reload配置信息
+reload_url="http://localhost:8983/solr/admin/cores?action=RELOAD&core=${core_name}"
+curl $reload_url
