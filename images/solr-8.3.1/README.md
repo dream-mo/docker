@@ -1,4 +1,4 @@
-##简介
+## 简介
 
    此镜像是基于solr官方镜像加入了IK分词器以及mysql dataimport的jar包默认配置文件模板等等。
 只需要在容器内执行  solr_create_core  core_name  命令即可创建一个core_name的core，默认创建一个text_ik的
