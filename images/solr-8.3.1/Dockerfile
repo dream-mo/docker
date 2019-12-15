@@ -18,13 +18,16 @@ RUN mkdir -p /opt/solr-${SOLR_VERSION}/ik-mysql-template/ && cd /opt/solr-${SOLR
    && cp /opt/solr-${SOLR_VERSION}/dist/solr-dataimporthandler-${SOLR_VERSION}.jar /opt/solr-${SOLR_VERSION}/dist/solr-dataimporthandler-extras-${SOLR_VERSION}.jar ./
 
 # 拷贝命令并赋予执行权限
-COPY solr_create_core /usr/bin/
-RUN chmod +x /usr/bin/solr_create_core && cp /opt/solr-${SOLR_VERSION}/ik-mysql-template/lib/*.jar ${SOLR_WEBAPP_LIB}
+COPY sh/* /usr/bin/
+RUN chmod +x /usr/bin/solr_create_core && cp /opt/solr-${SOLR_VERSION}/ik-mysql-template/lib/*.jar ${SOLR_WEBAPP_LIB} \
+    && mkdir /opt/solr-${SOLR_VERSION}/server/solr-webapp/webapp/WEB-INF/classes/
 
 # 拷贝默认配置文件
-COPY  data-config.xml /opt/solr-${SOLR_VERSION}/ik-mysql-template/
-COPY  managed-schema /opt/solr-${SOLR_VERSION}/ik-mysql-template/
-COPY  solrconfig.xml /opt/solr-${SOLR_VERSION}/ik-mysql-template/
+COPY  solr-config/* /opt/solr-${SOLR_VERSION}/ik-mysql-template/
+COPY  ik/* /opt/solr-${SOLR_VERSION}/server/solr-webapp/webapp/WEB-INF/classes/
+
+# volume 自定义ik分词器的扩展字典等配置
+VOLUME /opt/solr-${SOLR_VERSION}/server/solr-webapp/webapp/WEB-INF/classes/
 
 # 切换默认USER solr
 USER solr
