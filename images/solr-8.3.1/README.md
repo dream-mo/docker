@@ -18,7 +18,8 @@ FiledType。 便于我们直接使用solr+ik分词器，不用从头搭建运行
  
  挂载自己的数据卷: ```docker run -d -p 8983:8983 -v $PWD:/var/solr dreammo/solr::8.3.1-ik```
  
- 挂载ik分词器配置: ``docker run -d -p 8983:8983 -v $IK_CONFIG_DIR:/opt/solr-8.3.1/server/solr-webapp/webapp/WEB-INF/classes/ dreammo/solr::8.3.1-ik```
+ 挂载ik分词器配置: ```docker run -d -p 8983:8983 -v $IK_CONFIG_DIR:/opt/solr-8.3.1/server/solr-webapp/webapp/WEB-INF/classes/ dreammo/solr::8.3.1-ik```
+ 
  (备注: 修改ik分词器配置如.dic字典文件以及ik分词器配置的xlm文件  需要重启容器后生效)
  
  创建自己的core:
