@@ -1,7 +1,10 @@
-version: "2.2"
+version: "2"
 services:
-  my-ssserver:
-   image: dreammo/ssserver:1.0
-   ports:
-    - "8888:8888"
-   restart: always
+  ss:
+    image: dreammo/ssserver:alpine
+    container_name: ss-server
+    restart: always
+    ports:
+      - 22:8888
+    volumes:
+      - /opt/ss/ss.json:/etc/shadowsocks.json
