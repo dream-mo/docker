@@ -1,0 +1,19 @@
+version: "2"
+services:
+  nginx:
+    build:
+      context: ./docker/nginx
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/
+    volumes_from:
+      - phpfpm
+    ports:
+      - 30080:80
+    restart: always
+
+  phpfpm:
+    build:
+      context: ./php72
+    volumes:
+      - ./:/var/www/html
+    restart: always
