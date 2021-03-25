@@ -31,7 +31,7 @@ mkdir -p /etc/docker/
 
 touch /etc/docker/daemon.json
 
-echo {'"registry-mirrors"': ['"https://sdvw5c86.mirror.aliyuncs.com"']} > /etc/docker/daemon.json #加入国内daocloud镜像加速地址
+echo {'"registry-mirrors"': ['"https://hub-mirror.c.163.com/"']} > /etc/docker/daemon.json #加入国内daocloud镜像加速地址
 
 systemctl restart docker
 
