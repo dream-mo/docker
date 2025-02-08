@@ -1,0 +1,28 @@
+【rocky8】
+
+dnf install -y epel-release 
+dnf install -y dkms wget
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo
+wget https://developer.download.nvidia.cn/compute/cuda/repos/rhel8/x86_64/kmod-nvidia-latest-dkms-570.86.15-1.el8.x86_64.rpm
+wget https://developer.download.nvidia.cn/compute/cuda/repos/rhel8/x86_64/cuda-drivers-570.86.15-1.el8.x86_64.rpm
+
+sudo dnf config-manager --add-repo ./cuda-rhel8.repo
+sudo dnf install -y ./kmod-nvidia-latest-dkms-570.86.15-1.el8.x86_64.rpm
+sudo dnf install -y nvidia-settings
+sudo dnf install -y ./cuda-drivers-570.86.15-1.el8.x86_64.rpm
+
+【rocky9】
+
+dnf install -y epel-release 
+dnf install -y dkms wget
+
+wget https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/cuda-rhel9.repo
+wget https://developer.download.nvidia.cn/compute/cuda/repos/rhel9/x86_64/kmod-nvidia-latest-dkms-570.86.15-1.el9.x86_64.rpm
+wget https://developer.download.nvidia.cn/compute/cuda/repos/rhel9/x86_64/cuda-drivers-570.86.15-1.el9.x86_64.rpm
+
+sudo dnf config-manager --add-repo ./cuda-rhel9.repo
+sudo dnf install nvidia-driver nvidia-settings
+dnf remove kmod-nvidia-open-dkms
+sudo dnf install -y ./kmod-nvidia-latest-dkms-570.86.15-1.el9.x86_64.rpm
+sudo dnf install -y ./cuda-drivers-570.86.15-1.el9.x86_64.rpm
